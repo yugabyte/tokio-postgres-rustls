@@ -1,8 +1,8 @@
 #![cfg(any(feature = "aws-lc-rs", feature = "ring"))]
 
-use tokio_postgres::Config;
-use tokio_postgres::config::{ChannelBinding, SslMode};
-use tokio_postgres_rustls::MakeRustlsConnect;
+use yb_tokio_postgres::Config;
+use yb_tokio_postgres::config::{ChannelBinding, SslMode};
+use yb_postgres_rustls::MakeRustlsConnect;
 
 mod support;
 

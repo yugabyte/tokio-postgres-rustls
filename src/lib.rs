@@ -7,7 +7,7 @@ use std::sync::Arc;
 
 use rustls::ClientConfig;
 use tokio::io::{AsyncRead, AsyncWrite};
-use tokio_postgres::tls::MakeTlsConnect;
+use yb_tokio_postgres::tls::MakeTlsConnect;
 
 mod private {
     use std::{
@@ -21,7 +21,7 @@ mod private {
     use rustls::pki_types::ServerName;
     use sha2::{Digest, Sha256, Sha384, Sha512};
     use tokio::io::{AsyncRead, AsyncWrite, ReadBuf};
-    use tokio_postgres::tls::{ChannelBinding, TlsConnect};
+    use yb_tokio_postgres::tls::{ChannelBinding, TlsConnect};
     use tokio_rustls::{TlsConnector, client::TlsStream};
     use x509_cert::der::oid::db::rfc5912::{
         ECDSA_WITH_SHA_256, ECDSA_WITH_SHA_384, ID_SHA_1, ID_SHA_256, ID_SHA_384, ID_SHA_512,
@@ -126,7 +126,7 @@ mod private {
         }
     }
 
-    impl<S> tokio_postgres::tls::TlsStream for RustlsStream<S>
+    impl<S> yb_tokio_postgres::tls::TlsStream for RustlsStream<S>
     where
         S: AsyncRead + AsyncWrite + Unpin,
     {
@@ -353,7 +353,7 @@ mod tests {
             .dangerous()
             .set_certificate_verifier(Arc::new(AcceptAllVerifier {}));
         let tls = super::MakeRustlsConnect::new(config);
-        let (client, conn) = tokio_postgres::connect(
+        let (client, conn) = yb_tokio_postgres::connect(
             "sslmode=require host=localhost port=5432 user=postgres",
             tls,
         )

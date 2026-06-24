@@ -10,7 +10,7 @@ use std::env::{self, current_dir};
 use std::error::Error;
 use std::path::{Path, PathBuf};
 use tokio::time::{Duration, Instant, sleep, timeout};
-use tokio_postgres::{Config, NoTls};
+use yb_tokio_postgres::{Config, NoTls};
 
 const POSTGRES_IMAGE: &str = "postgres:17";
 
@@ -210,7 +210,7 @@ async fn wait_for_pg(host_port: u16, max_wait: Duration) -> Result<(), &'static 
         .port(host_port)
         .user("startup_probe")
         .dbname("postgres")
-        .ssl_mode(tokio_postgres::config::SslMode::Disable)
+        .ssl_mode(yb_tokio_postgres::config::SslMode::Disable)
         .connect_timeout(Duration::from_secs(2));
 
     let deadline = Instant::now() + max_wait;
