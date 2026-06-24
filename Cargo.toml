@@ -1,7 +1,7 @@
 [package]
 name = "yb-postgres-rustls"
 description = "TLS support for yb-tokio-postgres via rustls"
-version = "0.5.0-yb-1-beta.3"
+version = "0.14.0-yb-1-beta.1"
 # Forked from tokio-postgres-rustls by Jasper Hugo (https://github.com/jbg/tokio-postgres-rustls).
 authors = ["Jasper Hugo <jasper@jasperhugo.com>", "Yugabyte"]
 repository = "https://github.com/yugabyte/tokio-postgres-rustls"
