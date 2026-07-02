@@ -354,7 +354,7 @@ mod tests {
             .set_certificate_verifier(Arc::new(AcceptAllVerifier {}));
         let tls = super::MakeRustlsConnect::new(config);
         let (client, conn) = yb_tokio_postgres::connect(
-            "sslmode=require host=localhost port=5432 user=postgres",
+            "sslmode=require host=localhost port=5433 user=postgres",
             tls,
         )
         .await
